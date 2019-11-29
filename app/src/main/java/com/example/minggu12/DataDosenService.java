@@ -23,8 +23,9 @@ public interface DataDosenService {
                                     @Field("foto") String foto,
                                     @Field("nim_progmob") String nim_progmob);
 
+    @FormUrlEncoded
     @POST ("/api/progmob/dosen/update")
-    Call<DefaultResult>updateDosen (@Field("nama") String nama,
+    Call<DefaultResult> pdateDosen (@Field("nama") String nama,
                                     @Field("nidn") String nidn,
                                     @Field("alamat") String alamat,
                                     @Field("gelar") String gelar,
