@@ -23,8 +23,42 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         dataDosenService = RetrofitClient.getRetrofitInstance()
                 .create(DataDosenService.class);
+        insertDosen();
+    }
+    private void insertDosen() {
+        DataDosenService service = RetrofitClient.getRetrofitInstance().create(dataDosenService.getClass());
+        Call<DefaultResult> call = service.insertDosen("adrian", "007", "jogja", "SUPER", "ad.jpg", "2" );
+        call.enqueue(new Callback<DefaultResult>() {
+            @Override
+            public void onResponse(Call<DefaultResult> call, Response<DefaultResult> response) {
+                System.out.println(response.body().getStatus());
+            }
+
+            @Override
+            public void onFailure(Call<DefaultResult> call, Throwable t) {
+                System.out.println("message: " +t.getMessage());
+                Toast.makeText(MainActivity.this, "Something went wrong.. Please try later!", Toast.LENGTH_LONG).show();
+            }
+        });
     }
 
+//    private void updateDosen() {
+//        DataDosenService service = RetrofitClient.getRetrofitInstance().update(dataDosenService.getClass());
+//        Call<DefaultResult> call = service.insertDosen("Dendy", "001", "jogja", "SSD", "ad.jpg", "1" );
+//        call.enqueue(new Callback<DefaultResult>() {
+//            @Override
+//            public void onResponse(Call<DefaultResult> call, Response<DefaultResult> response) {
+//                System.out.println(response.body().getStatus());
+//            }
+//
+//            @Override
+//            public void onFailure(Call<DefaultResult> call, Throwable t) {
+//                System.out.println("message: " +t.getMessage());
+//                Toast.makeText(MainActivity.this, "Something went wrong.. Please try later!", Toast.LENGTH_LONG).show();
+//            }
+//        });
+//    }
+//    }
     private void getAllDataDosen()
     {
         Call<List<Dosen>> call = dataDosenService.getDosenALL("1");
