@@ -32,6 +32,16 @@ public interface DataDosenService {
                                     @Field("foto") String foto,
                                     @Field("nim_progmob") String nim_progmob);
 
+    @FormUrlEncoded
+    @POST ("/api/progmob/dosen/createfoto")
+    Call<DefaultResult>insertDosenWithPhoto (@Field("nama") String nama,
+                                    @Field("nidn") String nidn,
+                                    @Field("alamat") String alamat,
+                                    @Field("gelar") String gelar,
+                                    @Field("foto") String foto,
+                                    @Field("nim_progmob") String nim_progmob);
+
+
 
 }
 
